@@ -6,7 +6,6 @@ It's an application created with JavaScript React library as a frontend part of 
 
 To run the project Frontend and Backend parts of the projects must be started.
 
-
 #### Project use and is created with:
 * React library as frontent part
 * Laravel 9 framework as backend part
@@ -16,7 +15,6 @@ To run the project Frontend and Backend parts of the projects must be started.
 * User registration and login
 * Registered users can create, update, delete content: restaurants and dishes
 * Page content preview does not require user login
-
 
 ## Project launch steps
 * Clone repository: https://github.com/BrigitaGrybaiteBartke/restorant_FE.git
@@ -28,4 +26,3 @@ npm start
 ```
 
 * Home page: [http://localhost:3000]([http://localhost:3000)
-
