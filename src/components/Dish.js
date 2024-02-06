@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const Dish = () => {
-
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -20,9 +19,7 @@ const Dish = () => {
     const [status, setStatus] = useState(null);
 
     const [restaurants, setRestaurants] = useState([]);
-    // const [ratings, setRatings] = useState([]);
 
-    // show all Restaurants
     useEffect(() => {
         fetch("http://localhost:8000/api/restaurants")
             .then((res) => res.json())
@@ -38,8 +35,6 @@ const Dish = () => {
             })
     }, []);
 
-
-    //  jei esame update page => rastas id
     useEffect(() => {
         if (id)
             fetch(`${url}/${id}`)
@@ -55,7 +50,6 @@ const Dish = () => {
                 );
         else setIsLoaded(true);
     }, [id, url]);
-
 
     const createItem = (e) => {
         e.preventDefault();
@@ -99,29 +93,21 @@ const Dish = () => {
             )
     };
 
-
-    // PAGE VIEW
     if (!isLoaded) {
         return <div className='loading'>Loading...</div>
     }
     else {
         return (
             <>
-                {/* returns errors */}
                 {(error) ? <div>Error: {error.message}</div> : ''}
 
                 <div>{status === null ? "" : status.message}</div>
-
-
-                {/* form */}
                 <div className="d-flex aligns-items-center justify-content-center">
                     <div className="card w-50">
-
                         <h5 className="card-header"
                         >
                             {id ? `Update dish, id: ${id}` : `Create a new Dish`}
                         </h5>
-
                         <div className="card-body">
                             <form
                                 onSubmit={(e) => (id ? updateItem(e) : createItem(e))}
@@ -154,8 +140,6 @@ const Dish = () => {
                                         onFocus={() => dish.image ?? setDish({ ...dish, image: "" })}
                                         value={dish.image ?? "Enter title"}
                                     />
-
-                                    {/* choose */}
                                     <label className="form-label">
                                         Choose Restaurant
                                     </label>
@@ -179,11 +163,9 @@ const Dish = () => {
                     </div>
                 </div>
             </>
-
         )
     }
 };
-
 
 export default Dish;
 
