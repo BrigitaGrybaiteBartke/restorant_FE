@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
 const Register = () => {
-
 	const url = `http://localhost:8000/api/register`;
 	const hs = { Accept: "application/json", "Content-Type": "application/json" };
 	const [userInfo, setUserInfo] = useState({ name: "", email: "", password: "", password_confirmation: "" });
 	const [err, setErr] = useState(null);
 	const navigate = useNavigate();
-
 	const auth = useContext(AuthContext);
 
 	const register = (e) => {
@@ -36,9 +34,7 @@ const Register = () => {
 			<div className="card w-50">
 				<div className="card-header">Register</div>
 				<div className="card-body">
-					
 					<div className="text-danger">{err?.message}</div>
-
 					<form onSubmit={(e) => register(e)}>
 						<div className="my-2 text-danger"></div>
 						<div className="form-group d-grid gap-2">
