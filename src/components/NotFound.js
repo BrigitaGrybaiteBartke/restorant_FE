@@ -8,7 +8,6 @@ const NotFound = () => {
                     <span className="text-center text-secondary">404 error. </span>
                     <span className="text-secondary">That's all we know.</span>
                 </div>
-                {/* Back to homepage button */}
                 <div className="mt-5">
                     <a href="./" className='btn btn-light me-2'>Back to Home page</a>
                 </div>
