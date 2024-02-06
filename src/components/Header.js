@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const Header = () => {
-
     const auth = useContext(AuthContext);
 
     return (
@@ -41,7 +40,6 @@ const Header = () => {
                                 </NavLink>
                             </li>
                         </ul>
-
                         {!auth.isLoggedin() ? (
                             <ul className="navbar-nav d-flex">
                                 <li className="nav-item">
