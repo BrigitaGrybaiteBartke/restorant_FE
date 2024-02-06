@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
-
-
 const Dishes = () => {
     const auth = useContext(AuthContext);
     const [dishes, setDishes] = useState([]);
@@ -12,10 +10,7 @@ const Dishes = () => {
     const [restaurants, setRestaurants] = useState([])
     const navigate = useNavigate();
     const [sortOrder, setSortOrder] = useState(false)
-    // const [ratings, setRatings] = useState([]);
 
-
-    // show all restaurants
     useEffect(() => {
         fetch("http://localhost:8000/api/restaurants")
             .then((res) => res.json())
@@ -30,8 +25,6 @@ const Dishes = () => {
             })
     }, []);
 
-
-    // show all dishes
     useEffect(() => {
         fetch("http://localhost:8000/api/dishes")
             .then((res) => res.json())
@@ -45,8 +38,6 @@ const Dishes = () => {
             })
     }, []);
 
-
-    // delete
     const deleteDish = (id, e) => {
         fetch("http://localhost:8000/api/dishes/" + id, {
             method: "DELETE",
@@ -73,7 +64,6 @@ const Dishes = () => {
             );
     };
 
-
     const sortByPrice = () => {
         setDishes(
             dishes.sort((a, b) => {
@@ -84,8 +74,6 @@ const Dishes = () => {
         setDishes([...dishes])
     }
 
-
-    // PAGE VIEW
     if (!isLoaded) {
         return <div className='loading'>Loading...</div>;
     }
@@ -103,11 +91,8 @@ const Dishes = () => {
     else {
         return (
             <>
-                {/* returns errors */}
                 {(error) ? <div>Error: {error.message}</div> : ''}
-
                 <table className="table table-hover">
-                    {/* table head */}
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -120,13 +105,11 @@ const Dishes = () => {
                             </th>
                             <th>Image</th>
                             <th>Restaurant</th>
-                            {/* <th>Rating</th> */}
                             {auth.isLoggedin() ? (
-                                <th>{/* <span className="float-end mx-1">Actions</span> */}Actions</th>
+                                <th>Actions</th>
                             ) : ('')}
                         </tr>
                     </thead>
-                    {/* table body */}
                     <tbody>
                         {dishes.map((dish) => (
                             <tr key={dish.id}>
@@ -151,12 +134,6 @@ const Dishes = () => {
                                         </span>
                                     ))}
                                 </td>
-
-                                {/* <td className="col-lg-7 overflow-hidden" style={{ minWidth: "200px", maxHeight: "5px" }}>
-                                       rating
-                                </td> */}
-
-                                {/* actions */}
                                 {auth.isLoggedin() ? (
                                         <td className="col-lg-2" style={{ minWidth: "200px" }}>
                                             <button
@@ -177,11 +154,8 @@ const Dishes = () => {
                             </tr>
                         ))}
                     </tbody>
-
-
-                    {/* add new */}
                     {auth.isLoggedin() ? (
-                        < tfoot >
+                        <tfoot>
                             <tr>
                                 <td colSpan="6" className="border border-3 border-start-0 border-bottom-0 border-end-0">
                                     <button
@@ -194,10 +168,8 @@ const Dishes = () => {
                             </tr>
                         </tfoot>
                     ) : ('')}
-
                 </table>
             </>
-
         );
     }
 }
