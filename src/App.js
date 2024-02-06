@@ -12,33 +12,23 @@ import Register from './components/Register';
 import Login from './components/Login';
 import { AuthProvider } from './components/AuthContext';
 
-
-
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-
         <Header />
         <div className="container py-3">
           <Routes>
             <Route path='/' element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
-
-            {/* restaurants */}
             <Route path="/rest" element={<Restaurants />} />
             <Route path="/rest/:id" element={<Restaurant />} />  {/* update/create (pagal tai, koks mygtukas paspaustas */}
             <Route path="/rest/create" element={<Restaurant />} />
-
-            {/* dishes */}
             <Route path="/dishes" element={<Dishes />} />
             <Route path="/dishes/:id" element={<Dish />} />
             <Route path="/dishes/create" element={<Dish />} />
-
-            {/* register */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-
             <Route path='/notfound' element={<NotFound />} />
             <Route
               path='*'
@@ -47,7 +37,6 @@ function App() {
           </Routes>
         </div>
       </AuthProvider>
-
     </BrowserRouter>
   );
 }
