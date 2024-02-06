@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const Restaurants = () => {
-
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
     const [restaurants, setRestaurants] = useState([]);
@@ -11,9 +10,6 @@ const Restaurants = () => {
     const [error, setError] = useState(null);
     const [sortOrder, setSortOrder] = useState(false)
 
-    // console.log(restaurants['length'])
-
-    // show all restaurants
     useEffect(() => {
         fetch("http://localhost:8000/api/restaurants")
             .then((res) => res.json())
@@ -22,14 +18,11 @@ const Restaurants = () => {
                 setIsLoaded(true);
             })
             .catch(error => {
-                console.log(error);
                 setError(error);
                 setIsLoaded(true);
             })
     }, []);
 
-
-    // delete
     const deleteRestaurant = (id, e) => {
         fetch("http://localhost:8000/api/restaurants/" + id, {
             method: "DELETE",
@@ -40,7 +33,6 @@ const Restaurants = () => {
         })
             .then(
                 (res) => {
-                    // console.log(res)
                     if (res.status === 200) {
                         const remaining = restaurants.filter((r) => id !== r.id);
                         setRestaurants(remaining);
@@ -49,7 +41,7 @@ const Restaurants = () => {
                         setError({ message: res.statusText });
                     }
 
-                                // different error messages
+                            // different error messages
                             //     else if (res.status === 401) {
                             //         setStatus({ message: res.statusText });
                             //       } else if (res.status === 422) {
@@ -57,7 +49,6 @@ const Restaurants = () => {
                 },
 
                 (err) => {
-                    // console.log(err);
                     setError(err);
                     setIsLoaded(true);
                 }
@@ -75,8 +66,6 @@ const Restaurants = () => {
         setRestaurants([...restaurants])
     }
 
-
-    // PAGE VIEW
     if (!isLoaded) {
         return <div className='loading'>Loading...</div>;
     }
@@ -94,12 +83,8 @@ const Restaurants = () => {
     else {
         return (
             <>
-
-                {/* returns errors */}
                 {(error) ? <div>Error: {error.message}</div> : ''}
-            
                 <table className="table table-hover">
-                    {/* table head */}
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -118,10 +103,8 @@ const Restaurants = () => {
                             ) : ('')}
                         </tr>
                     </thead>
-                    {/* table body */}
                     <tbody>
                         {restaurants.map((restaurant) => (
-
                             <tr key={restaurant.id}>
                                 <td className="col-lg-3 overflow-hidden" style={{ minWidth: "20px", maxHeight: "5px" }}>
                                     {restaurant.id}
@@ -138,8 +121,6 @@ const Restaurants = () => {
                                 <td className="col-lg-7 overflow-hidden" style={{ minWidth: "400px", maxHeight: "5px" }}>
                                     {restaurant.workingTime}
                                 </td>
-
-                                {/* actions */}
                                 {auth.isLoggedin() ? (
                                     <td className="col-lg-2" style={{ minWidth: "200px" }}>
                                         <button
@@ -159,8 +140,6 @@ const Restaurants = () => {
                             </tr>
                         ))}
                     </tbody>
-
-                    {/* add new */}
                     {auth.isLoggedin() ? (
                         <tfoot>
                             <tr>
