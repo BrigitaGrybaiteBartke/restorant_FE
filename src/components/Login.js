@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
 const Login = () => {
-
 	const auth = useContext(AuthContext);
-
 	const url = `http://localhost:8000/api/login`;
 	const hs = {
 		Accept: "application/json", "Content-Type": "application/json",
@@ -14,7 +12,6 @@ const Login = () => {
 	const [creds, setCreds] = useState({ email: "", password: "" });
 	const [err, setErr] = useState(null);
 	const navigate = useNavigate();
-
 
 	const login = (e) => {
 		e.preventDefault();
